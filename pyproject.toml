@@ -3,7 +3,7 @@ name = "litellm"
 version = "1.108.0"
 description = "Library to easily interface with LLM API providers"
 readme = "README.md"
-requires-python = ">=3.10, <3.16"
+requires-python = ">=3.11, <3.16"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [
@@ -15,7 +15,7 @@ dependencies = [
     # When changing a floor, verify it installs + imports on every supported
     # Python with: `uv pip install --resolution=lowest-direct .`
     "fastuuid>=0.14.0,<1.0; python_version < '3.15'",
-    "filelock>=3.16.1,<5.0",
+    "filelock>=4.2.1,<5.0",
     "httpx[http2]>=0.28.0,<1.0",
     "openai>=2.20.0,<4.0.0",
     "python-dotenv>=1.0.0,<2.0",
@@ -31,7 +31,6 @@ dependencies = [
     "jinja2>=3.1.6,<4.0",
     "aiohttp>=3.14.2,<4.0",
     "anyio>=4.14.0,<5.0",
-    "async-timeout>=4.0.3,<6.0; python_version < '3.11'",
     "pydantic>=2.11.0,<3.0.0; python_version < '3.14'",
     "pydantic>=2.12.0,<3.0.0; python_version == '3.14'",
     "pydantic>=2.14.0,<3.0.0; python_version >= '3.15'",
@@ -182,16 +181,16 @@ proxy-runtime = [
     "grpcio==1.84.1",
     "prometheus-client>=0.20.0,<1.0",
     "langfuse>=4.7,<5.0",
-    "opentelemetry-api==1.45.1",
-    "opentelemetry-sdk==1.45.1",
-    "opentelemetry-exporter-otlp==1.45.1",
-    "opentelemetry-instrumentation-fastapi==0.66b1",
+    "opentelemetry-api==1.45.2",
+    "opentelemetry-sdk==1.45.2",
+    "opentelemetry-exporter-otlp==1.45.2",
+    "opentelemetry-instrumentation-fastapi==0.66b2",
     "ddtrace>=4.8.2,<5.0",
     "sentry-sdk>=2.21.0,<3.0",
     "mangum>=0.17.0,<1.0",
     "azure-ai-contentsafety>=1.0.0,<2.0",
     "azure-storage-file-datalake>=12.20.0,<13.0",
-    "pypdf>=6.21.2,<7.0",
+    "pypdf>=6.21.4,<7.0",
     "llm-sandbox>=0.3.39,<1.0",
     "detect-secrets>=1.5.0,<2.0",
 ]
@@ -212,7 +211,6 @@ dev = [
     "keyring==25.7.0",
     "pytest==9.0.3",
     "pytest-socket==0.8.1",
-    "tomli==2.4.1; python_version < '3.11'",
     "pytest-mock==3.15.1",
     "pytest-asyncio==1.3.0",
     "psycopg==3.3.6",
@@ -228,10 +226,10 @@ dev = [
     "types-PyYAML==6.0.12.20250915",
     "botocore-stubs==1.43.14",
     "types-boto3[bedrock,bedrock-agent,bedrock-runtime,kms,s3,sagemaker-runtime,sts]==1.43.30",
-    "opentelemetry-api==1.45.1",
-    "opentelemetry-sdk==1.45.1",
-    "opentelemetry-exporter-otlp==1.45.1",
-    "opentelemetry-instrumentation-fastapi==0.66b1",
+    "opentelemetry-api==1.45.2",
+    "opentelemetry-sdk==1.45.2",
+    "opentelemetry-exporter-otlp==1.45.2",
+    "opentelemetry-instrumentation-fastapi==0.66b2",
     "langfuse>=4.7,<5.0",
     "fastapi-offline==1.7.6",
     "fakeredis==2.34.1",
@@ -260,10 +258,10 @@ proxy-dev = [
     "hypercorn==0.17.3",
     "prometheus-client==0.20.0",
     "sentry-sdk==2.21.0",
-    "opentelemetry-api==1.45.1",
-    "opentelemetry-sdk==1.45.1",
-    "opentelemetry-exporter-otlp==1.45.1",
-    "opentelemetry-instrumentation-fastapi==0.66b1",
+    "opentelemetry-api==1.45.2",
+    "opentelemetry-sdk==1.45.2",
+    "opentelemetry-exporter-otlp==1.45.2",
+    "opentelemetry-instrumentation-fastapi==0.66b2",
     "azure-identity==1.25.2",
     "a2a-sdk==1.1.0",
     "backports-zstd==1.8.0; python_version < '3.14'",
@@ -275,16 +273,14 @@ ci = [
     # protobuf, Pillow is a compiled C extension).
     "tenacity==8.5.0",
     "google-generativeai==0.8.6",
-    "Pillow==12.3.0; python_version == '3.10'",
-    "Pillow==13.0.0; python_version >= '3.11'",
+    "Pillow==13.0.0",
     # Azure batch E2E tests still import psycopg2 directly.
     "psycopg2-binary==2.9.11",
     "pytest-codspeed==4.3.0",
     "pytest-retry==1.7.0",
     "pyarrow==23.0.1",
     "langchain==1.3.9",
-    "lunary==1.4.36; python_version == '3.10'",
-    "lunary==1.4.37; python_version >= '3.11'",
+    "lunary==1.4.37",
     "logfire==5.2.0",
     "traceloop-sdk==0.34.0",
     "detect-secrets==1.5.0",
@@ -359,10 +355,12 @@ cache-keys = [
     { file = "litellm-rust/crates/**/*" },
 ]
 constraint-dependencies = [
-    "tornado>=6.5.8",
+    "dnspython>=2.9.2",
+    "tornado>=6.6.1",
     "aiohttp>=3.14.2,<4.0",
     "packaging>=24.0",
     "soupsieve>=2.8.4",
+    "soupsieve>=4.0.0; python_full_version >= '3.11.5'",
     "httplib2>=0.32.0",
     "setuptools>=84.1.0",
 ]
@@ -390,8 +388,6 @@ brotli = "2026-10-22T14:01:00Z"
 mlflow = "2026-10-21T03:00:00Z"
 mlflow-skinny = "2026-10-21T03:00:00Z"
 mlflow-tracing = "2026-10-21T03:00:00Z"
-# TODO: ryan, remove after 2026-10-25, once pypdf 6.21.2 (GHSA-6c7f-9265-g8fw) clears the 3-day window
-pypdf = "2026-10-21T17:00:00Z"
 
 [tool.uv.sources]
 litellm-proxy-extras = { workspace = true }
